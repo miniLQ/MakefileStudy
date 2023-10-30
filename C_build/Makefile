@@ -1,17 +1,18 @@
 
-hello_static:
+world_static:
 	gcc -E helloworld.c -o helloworld.i
 	gcc -S helloworld.i -o helloworld.s
 	gcc -c helloworld.s -o helloworld.o
-	ar -r libhello.a helloworld.o
-	gcc main.c -o hello -lhello -L./
+	ar -r libhelloworld.a helloworld.o
 
-hello_dynamic:
-	gcc -E helloworld.c -o helloworld.i
-	gcc -S helloworld.i -o helloworld.s
-	gcc -c -fpic helloworld.c -o helloworld.o
-	gcc --shared helloworld.o -o libhello.so
-	gcc main.c -o hello -lhello -L./ -Wl,-rpath=./
+linux_dynamic:
+	gcc -E hellolinux.c -o hellolinux.i
+	gcc -S hellolinux.i -o hellolinux.s
+	gcc -c -fpic hellolinux.c -o hellolinux.o
+	gcc --shared hellolinux.o -o libhellolinux.so
+
+install:
+	gcc main.c -o hello -lhelloworld -lhellolinux -L./ -Wl,-rpath=./
 
 clean:
 	rm -rf *.o *.i *.s *.a *.so hello

@@ -6,8 +6,9 @@
  ************************************************************************/
 
 #include <stdio.h>
-int helloworld()
+
+int hellolinux()
 {
-    printf("hello world!\n");
-    return 0;
+  printf("hello linux!\n");
+  return 0;
 }
